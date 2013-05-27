@@ -1,0 +1,7 @@
+[24-Sep-2012 12:15:14 UTC] PHP Warning:  require(class.phpmailer.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/michael2/public_html/processor.php on line 8
+[24-Sep-2012 12:15:14 UTC] PHP Warning:  require(class.phpmailer.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/michael2/public_html/processor.php on line 8
+[24-Sep-2012 12:15:14 UTC] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'class.phpmailer.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/michael2/public_html/processor.php on line 8
+[27-Sep-2012 01:16:42 UTC] PHP Warning:  require(class.phpmailer.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/michael2/public_html/processor.php on line 8
+[27-Sep-2012 01:16:42 UTC] PHP Warning:  require(class.phpmailer.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/michael2/public_html/processor.php on line 8
+[27-Sep-2012 01:16:42 UTC] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'class.phpmailer.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/michael2/public_html/processor.php on line 8
+[01-Oct-2012 10:42:57 UTC] PHP Warning:  Unterminated comment starting line 55 in /home/michael2/public_html/register.php on line 55

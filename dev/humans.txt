@@ -1,0 +1,14 @@
+/* TEAM */ 
+Web designer: Michael Crothers                      
+Contact: admin@michaelcrothers.com            
+Twitter: shitmgcsays                         
+Location: Brisbane, Australia
+
+/* THANKS */
+
+/* SITE */
+
+Last update: 07/04/2013
+Language: English
+Doctype: HTML5
+IDE: Sublime Text 2, Notepad++, FileZilla, Photoshop

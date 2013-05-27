@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /bmicalc
+Disallow: /dev
+Disallow: /drupal
+Disallow: /just-for-fun

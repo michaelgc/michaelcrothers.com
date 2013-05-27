@@ -1,0 +1,100 @@
+<html>
+<head>
+<body>
+<canvas id="c" width="640" height="400"></canvas>
+<script> // */
+
+setInterval(doFrame, 17);
+var theta = 0;
+
+function doFrame() {
+    var cv = document.getElementById('c')
+      , matrixWidth = 9
+      , ww = cv.width
+      , hh = cv.height
+      , cx = ww/2               // Center x
+      , cy = hh/2               // Center y
+      , maxCoord = Math.floor(matrixWidth/2)
+      , spacing = Math.min(ww, hh)/(matrixWidth-1) // Between lattice points
+      , GREEN = 1
+      , ALPHA = 3
+      , ctx = cv.getContext('2d')
+      , matrix = []             // Locations of lattice points.
+  ;
+
+  ctx.globalAlpha = Math.pow(Math.sin(theta/10.41257), 2);
+
+  for (var ii = -maxCoord; ii <= maxCoord; ii++) {
+    for (var jj = -maxCoord; jj <= maxCoord; jj++) {
+      matrix.push([ii*spacing, jj*spacing, ii*ii + jj*jj]);
+    }
+  }
+
+  var max_r2 = matrix[0][2];    // Find maximum r².
+  for (var ii = 0; ii < matrix.length; ii++) {
+    if (matrix[ii][2] > max_r2) max_r2 = matrix[ii][2];
+  }
+
+  var fullBrightness = max_r2 * 3/2; // r² at which brightness would be 100%
+
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, ww, hh);
+
+  var imageData = ctx.getImageData(0, 0, ww, hh)
+    , data = imageData.data
+    , ss = Math.sin(theta)/2 + 0.5
+    , cc = Math.cos(theta)/2
+  ;
+
+  // Outer loop over moving lattice points in order to keep the motion
+  // calculation out of the inner loop.
+  for (var ii = 0; ii < matrix.length; ii++) {
+    var x2 = matrix[ii][0]
+      , y2 = matrix[ii][1]
+      , r2 = matrix[ii][2]
+      , aa = 255 * (max_r2-r2) / fullBrightness
+      , x2s = x2*ss - y2*cc
+      , y2c = x2*cc + y2*ss
+    ;
+
+    // Loop over fixed lattice points.
+    for (var jj = 0; jj < matrix.length; jj++) {
+      var x1 = matrix[jj][0]
+        , y1 = matrix[jj][1]
+        , xx = Math.round(x1 + cx + x2s)
+        , yy = Math.round(y1 + cy + y2c)
+      ;
+
+      if (0 <= xx && xx < ww && 0 <= yy && yy < hh) {
+        var greenOffset = ((yy * ww) + xx) * 4 + GREEN
+          , alphaOffset = greenOffset - GREEN + ALPHA
+          , oldGreen = data[greenOffset]
+        ;
+        data[greenOffset] = Math.min(255, oldGreen+aa);
+        data[alphaOffset] = 255;
+      }
+    }
+  }
+
+  gl = imageData;
+  ctx.putImageData(imageData, 0, 0);
+
+  theta += 0.03;
+}
+
+// </script>
+<style>
+body { visibility: hidden }
+body canvas {
+  width: 100%;
+  height: 100%;
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black
+}
+</style>
+</body>
+</head>
+</html>
